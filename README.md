@@ -1,1 +1,1 @@
-# Arch-Hyprland
+# Debian-Hyprland
