@@ -1,0 +1,183 @@
+{
+    "layer": "top",
+    "position": "top",
+    "modules-left": ["sway/workspaces", "wlr/taskbar", "sway/mode", "sway/window"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["network","pulseaudio", "temperature", "battery","clock"],
+
+    "sway/mode": {
+        "format": " {}"
+    },
+
+
+
+
+    "custom/spotify": {
+    "exec": "/usr/bin/python3 /modules/mediaplayer.py --player spotify",
+    "format": "{}  ",
+    "return-type": "json",
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+},
+
+"custom/media": {
+    "format": "{icon} {}",
+    "return-type": "json",
+    "max-length": 40,
+    "format-icons": {
+        "spotify": "",
+        "default": "🎜"
+    },
+    "escape": true,
+    "exec": "$HOME/.config/waybar/modules/mediaplayer.py 2> /dev/null" // Script in resources folder
+    // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+},
+
+
+
+
+
+
+
+
+
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "disable-markup": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1 <span font='Font Awesome 5 Free 11'> </span>",
+            "2": "2 <span font='Font Awesome 5 Free 11'> </span>",
+            "3": "3 <span font='Font Awesome 5 Free 11'> </span>",
+            "4": "4 <span font='Font Awesome 5 Free 11'> </span>",
+            "5": "5 <span font='Font Awesome 5 Free 11'> </span>",
+            "6": "6 <span font='Font Awesome 5 Free 11'> </span>"
+        }
+    },
+
+    "sway/window": {
+        "max-length": 60,
+        "tooltip": false
+    },
+
+    "clock": {
+        "format": "{:%a %d %b - %H:%M}",
+    },
+
+    "hyprland/window": {
+        "format": "{}",
+        "separate-outputs": true
+    },
+
+    "cpu_speed": {
+        "interval": 10,
+        "format": "<span font='Font Awesome 5 Free 11'>{icon}</span>  {}",
+        "format-icons": [""],
+        "escape": true,
+    },
+
+
+    "battery": {
+        "format": "<span font='Font Awesome 5 Free 11'>{icon}</span>  {capacity}% - {time}",
+        "format-icons": ["", "", "", "", ""],
+        "format-time": "{H}h{M}m",
+        "format-charging": "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  {capacity}% - {time}",
+        "format-full": "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>",
+        "interval": 30,
+        "states": {
+            "warning": 35,
+            "critical": 15
+        },
+        "tooltip": true,
+    },
+
+"network": {
+    "format": "{icon}",
+    "format-alt": "{ipaddr}/{cidr} {icon}",
+    "format-alt-click": "click-right",
+    "format-wifi": "<span font='Font Awesome 5 Free 10'></span>  ({signalStrength}%)",
+    "format-ethernet": " {ifname}",
+    "format-disconnected": "⚠",
+    "on-click": "kitty -e ~/sway/scripts/network-manager",
+    "tooltip": true
+},
+
+
+
+"pulseaudio": {
+    "format": "<span font='Font Awesome 5 Free 11'>{icon:2}</span> {volume:4}%",
+    "format-bluetooth": "<span font='Font Awesome 5 Free 11'> {icon:2}</span> {volume:4}% -",
+    "format-alt": "<span font='Font Awesome 5 Free 11'>{icon:2}</span> {volume:4}%",
+    "format-alt-click": "<span font='Font Awesome 5 Free 11'></span>",
+    "format-muted": "<span font='Font Awesome 5 Free 11'></span>",
+    "format-icons": {
+        "headphone": [" ", " ", " ", " "],
+        "default": ["", "", "", ""]
+    },
+
+    "scroll-step": 2,
+    "on-click": "kitty alsamixer",
+    "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "tooltip": true
+},
+
+
+
+    "custom/storage": {
+        "format": "{} ",
+        "format-alt": "{percentage}% ",
+        "format-alt-click": "click-right",
+        "return-type": "json",
+        "interval": 60,
+        "exec": "~/.config/waybar/modules/storage.sh"
+    },
+
+
+    "temperature": {
+        "format": "<span font='Font Awesome 5 Free 9'>🌡</span> {temperatureC:3}°C",
+        "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon8/temp1_input",
+        "interval": 5,
+    },
+
+
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 14,
+        "icon-theme": "Flat-Remix-Violet-Dark",
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close"
+    },
+
+
+
+
+
+
+
+
+
+
+
+    "custom/notification": {
+        "tooltip": false,
+        "format": " {} {icon} ",
+        "format-icons": {
+          "notification": "<span foreground='red'><sup></sup></span>",
+          "none": "",
+          "dnd-notification": "<span foreground='red'><sup></sup></span>",
+          "dnd-none": "",
+          "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+          "inhibited-none": "",
+          "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+          "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+      },
+}

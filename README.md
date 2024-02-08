@@ -1,1 +1,1 @@
-# Debian-Hyprland
+# Dotfiles Hyprland For Debian 12
