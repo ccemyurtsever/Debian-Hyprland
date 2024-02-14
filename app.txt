@@ -1,0 +1,29 @@
+Neofecth
+Btop
+Htop
+Swaylock
+Waybar
+Discord
+Vscode
+Kate
+Kitty
+Bitwarden
+Snap
+Arduino IDE
+Blender
+Firefox
+Fritzing
+Obsidian
+Spotify
+Qbittorent
+Zip
+Macchanger
+Grub-customizer
+Alsamikser
+Pulseaudo
+Dunstify
+Git
+Meta Data Cleaner
+grim
+slurp
+Opsionel : Kde Connect, Krita

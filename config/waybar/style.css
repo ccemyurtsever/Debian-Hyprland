@@ -1,0 +1,38 @@
+* {
+  transition: none;
+  box-shadow: none;
+  font-family: JetBrainsMono;
+  font-size: 12.5px;
+  color: #fff;
+}
+
+#waybar {
+    margin-top: 14px;
+    border-radius: 15px;
+    border: 2px solid #b072d1;
+
+  }
+
+#battery, #cpu, #disk, #memory, #network, #pulseaudio, #backlight, #clock {
+  margin: 4px 1px;
+  padding: 0 5px;
+  border-radius: 20px;
+  min-width: 10px;
+  background-color: transparent;
+}
+
+#temperature{
+  margin: 4px -2px;
+  padding: 0 5px;
+  border-radius: 20px;
+  min-width: 10px;
+  background-color: transparent;
+}
+
+#clock {
+  margin: 4px 2px;
+}
+
+#temperature.critical {
+  color: #800020;
+}
